@@ -1,0 +1,7 @@
+after the clone from github to pythonanywhere
+
+go to the corresponding directories where the db.sqlite3 exists
+>python manage.py migrate
+>python manage.py makemigrations  matplot_app
+>python manage.py migrate
+>python manage.py createsuperuser
