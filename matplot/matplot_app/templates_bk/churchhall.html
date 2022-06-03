@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {  background-color: white;}
+</style>
+<body>
+<canvas id='myCanvas' width='800' height='600'></canvas>
+<script>
+
+
+function line(x1, y1, x2, y2) {
+  context.beginPath();
+  context.moveTo(x1, y1);
+  context.lineTo(x2, y2);
+  context.stroke();
+}
+
+function animate() {
+  let rotation = (2 * Math.sin(counter / (3.14 * speed)));
+  context.setTransform(scale, 0, 0, scale, canvas.width / 2, canvas.height / 2);
+  context.clearRect(-canvas.width / 2, -canvas.height, canvas.width, canvas.height *2);
+  for (let i = 0; i < 360; i++) {
+    context.strokeStyle = colors[i % 6];
+    context.lineWidth = i / 100 + 1;
+    context.beginPath();
+    context.moveTo(0, 0);
+    context.lineTo(0, i);
+    context.stroke();
+    context.translate(0, i);
+    context.rotate((-60 + rotation) * 2 * Math.PI / 360);
+  }
+  window.requestAnimationFrame(animate);
+  counter++;
+}
+
+let colors = ['red', 'purple', 'blue', 'green', 'orange', 'yellow'];
+let canvas = document.getElementById('myCanvas');
+let context = canvas.getContext('2d');
+let counter = 0;
+let scale = .3;
+let speed = 20;
+line(-100, 0 , 100, 200);
+animate();
+</script>
+</body>
+</canvas>
